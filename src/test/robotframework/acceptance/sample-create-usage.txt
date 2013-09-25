@@ -1,0 +1,16 @@
+*** Settings ***
+Library     JSpringBotGlobal
+
+
+*** Test Cases ***
+Create XML String
+    [Tags]      keyword     create-xml-string
+    Start XML Node      root
+    Start XML Node      nodeWithAttributes
+    Add XML Attribute   attr1     attrValue1
+    Add XML Attribute   attr2     attrValue2
+    End XML Node
+    Start XML Node      nodeWithText
+    Set XML Text        Some Text Here
+    ${xml}=     Create XML String
+    Should Be Equal As Strings  ${xml}      <root><nodeWithAttributes attr1="attrValue1" attr2="attrValue2"/><nodeWithText>Some Text Here</nodeWithText></root>
